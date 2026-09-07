@@ -16,7 +16,7 @@ The screenshot is a software integration demonstration, not an OCR accuracy resu
 
 Requirements: **desktop Obsidian 1.11.4+**, SVG-based Ink notes, and an OpenAI API key for paid transcription. Windows is the first supported test platform. The plugin needs no server, Python installation, or Node installation at runtime.
 
-1. Download a `squid-plugin` artifact from a successful repository [Actions run](https://github.com/Kxnar/ink-ocr/actions), or build locally below.
+1. Download a `squid-plugin` artifact from a successful repository [Actions run](https://github.com/Kxnar/squidink/actions), or build locally below.
 2. Copy `main.js`, `manifest.json`, and `styles.css` into `<vault>/.obsidian/plugins/squid/`.
 3. Reload Obsidian, enable community plugins for that vault, and enable **Squid**.
 4. Open **Settings → Squid → OpenAI API key**. Choose or create a secret in Obsidian SecretStorage. Squid saves the secret's name, never the key itself, in its settings.
