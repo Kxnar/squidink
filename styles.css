@@ -1,0 +1,20 @@
+.squid-modal { width: min(1100px, 94vw); }
+.squid-modal .modal-content { overscroll-behavior: contain; }
+.squid-source { padding: 1rem; border: 1px solid var(--background-modifier-border); border-radius: 8px; overflow: auto; }
+.squid-source img { display: block; width: 100%; height: auto; background: #fff; }
+.squid-modal > .modal-content > .squid-source { max-height: 45vh; }
+.squid-status { padding: .75rem 0; font-size: var(--font-small); }
+.squid-muted { color: var(--text-muted); font-size: var(--font-small); }
+.squid-warning { color: var(--text-warning); margin-block: .75rem; }
+.squid-crop-controls { display: flex; gap: .8rem; flex-wrap: wrap; padding-block: .75rem; }
+.squid-crop-controls p { width: 100%; margin: 0; }
+.squid-crop-controls label { display: flex; flex-direction: column; gap: .3rem; }
+.squid-crop-controls input { width: 100px; }
+.squid-review-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 1.25rem; align-items: start; }
+.squid-review-grid > div { min-width: 0; }
+.squid-editor { width: 100%; min-height: 250px; margin-top: .5rem; resize: vertical; font-family: var(--font-monospace); }
+.squid-math-preview { white-space: pre-wrap; overflow-wrap: anywhere; padding: 1rem; border: 1px solid var(--background-modifier-border); border-radius: 8px; min-height: 100px; }
+.squid-math-preview mjx-container[display="true"] { overflow-x: auto; overflow-y: hidden; }
+.squid-previous { white-space: pre-wrap; overflow-wrap: anywhere; max-height: 250px; overflow: auto; }
+.squid-status-bar { cursor: pointer; }
+@media (max-width: 760px) { .squid-review-grid { grid-template-columns: 1fr; } }

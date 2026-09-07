@@ -1,0 +1,10 @@
+{
+  "id": "squid",
+  "name": "Squid",
+  "version": "0.1.0",
+  "minAppVersion": "1.11.4",
+  "description": "Transcribe handwritten Ink sections into reviewed, editable Markdown and LaTeX.",
+  "author": "Kxnar",
+  "authorUrl": "https://github.com/Kxnar",
+  "isDesktopOnly": true
+}

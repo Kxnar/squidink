@@ -1,0 +1,31 @@
+{
+  "name": "squid-ink-ocr",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Review handwritten Ink sections as editable Markdown and LaTeX in Obsidian.",
+  "type": "module",
+  "scripts": {
+    "dev": "node esbuild.config.mjs --watch",
+    "build": "tsc --noEmit && node esbuild.config.mjs",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "check": "npm run build && npm test",
+    "qa:vault": "node scripts/create-test-vault.mjs",
+    "qa:obsidian": "node scripts/qa-obsidian.mjs",
+    "package": "npm run build && node scripts/package.mjs",
+    "benchmark": "tsx scripts/benchmark.ts"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.63.0",
+    "@types/node": "^24.0.0",
+    "esbuild": "0.28.2",
+    "jsdom": "^26.1.0",
+    "obsidian": "1.13.1",
+    "tsx": "^4.20.0",
+    "typescript": "^5.9.3",
+    "vitest": "^3.2.4"
+  },
+  "engines": {
+    "node": ">=22"
+  }
+}

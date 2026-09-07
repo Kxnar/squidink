@@ -1,0 +1,13 @@
+node_modules/
+main.js
+*.map
+dist/
+.qa-vault/
+.qa-artifacts/
+.qa-profile/
+coverage/
+.env*
+!.env.example
+benchmark/private/
+benchmark/results/
+.DS_Store
