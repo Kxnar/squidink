@@ -4,7 +4,7 @@ Checked on **7 September 2026**. This is an implementation candidate, not a decl
 
 ## Completed software verification
 
-`npm run check`: TypeScript production build and **71 automated checks** pass.
+`npm run check`: TypeScript production build and **72 automated checks** pass.
 
 | Case | Evidence |
 | --- | --- |

@@ -8,6 +8,13 @@ export const MAX_EDGE = 4096;
 export const MAX_PIXELS = 4_194_304;
 const MAX_SVG_BYTES = 12_000_000;
 
+function unsafeCss(value: string): boolean {
+  // Reject CSS escapes, which could hide a remote URL or import from text checks.
+  if (/\\|@import|@font-face|javascript:|expression\(/i.test(value)) return true;
+  return [...value.matchAll(/url\s*\(([^)]*)\)/gi)]
+    .some(match => !/^(['"]?)#[^'"\s()<>]+\1$/.test(match[1]!.trim()));
+}
+
 export function parseViewBox(value: string | null): Rect {
   const parts = value?.trim().split(/[\s,]+/).map(Number);
   if (!parts || parts.length !== 4) throw new SquidError('Ink SVG has no usable viewBox. Open and save it in Ink first.');
@@ -37,11 +44,11 @@ export function cleanSvg(raw: string, viewport?: Rect): CleanSvg {
     if (!supported.has(el.localName)) throw new SquidError('This SVG contains unsupported artwork. Open and save it with current Ink before transcribing.');
     for (const attr of [...el.attributes]) {
       if (/^on/i.test(attr.name) || /^(?:href|xlink:href)$/i.test(attr.name) && !attr.value.startsWith('#')
-        || /(?:url\(\s*['"]?(?!#)|@import|javascript:|expression\()/i.test(attr.value)) {
+        || unsafeCss(attr.value)) {
         throw new SquidError('This SVG uses active content or external resources. Resave it with current Ink.');
       }
     }
-    if (el.localName === 'style' && /@import|@font-face|url\(|expression\(|javascript:/i.test(el.textContent ?? '')) {
+    if (el.localName === 'style' && unsafeCss(el.textContent ?? '')) {
       throw new SquidError('This SVG requires external styling. Resave it with current Ink.');
     }
   }

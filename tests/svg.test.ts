@@ -42,6 +42,11 @@ describe('SVG extraction', () => {
   it('keeps safe internal use references', () => {
     expect(cleanSvg(svg.replace('</svg>', '<use href="#fraction"/></svg>')).xml).toContain('href="#fraction"');
   });
+  it('keeps quoted local SVG paint references without allowing remote CSS references', () => {
+    expect(cleanSvg(svg.replace('</svg>', `<style>.paint { fill: url('#local'); }</style><path fill="url('#local')"/></svg>`)).xml).toContain('url(');
+    expect(() => cleanSvg(svg.replace('</svg>', `<style>.paint { fill: url('https://example.com/remote'); }</style></svg>`))).toThrow();
+    expect(() => cleanSvg(svg.replace('</svg>', '<style>.paint { fill: u\\72l(https://example.com/remote); }</style></svg>'))).toThrow();
+  });
   it('requires cropping before large sections can be sent', () => {
     expect(needsCrop({ x: 0, y: 0, width: 2000, height: 6000 })).toBe(true);
     expect(needsCrop({ x: 0, y: 0, width: 2500, height: 2500 })).toBe(true);
